@@ -13,7 +13,7 @@ class ClienteEnderecosAdmin(admin.ModelAdmin):
     list_display = ('rua', 'numero','cliente_id')
     
 class StatusTransacaoAdmin(admin.ModelAdmin):
-    list_display = ('status', 'descricao')
+    list_display = ('id','status', 'descricao')
 
 class TipoTransacaoAdmin(admin.ModelAdmin):
     list_display = ('tipo', 'descricao')

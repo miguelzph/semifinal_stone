@@ -8,7 +8,7 @@ class Transacoes(models.Model):
     cliente_envio_id = models.ForeignKey(Cliente,null=True, related_name='cliente_envio_id', on_delete=models.CASCADE)
     cliente_recebedor_id = models.ForeignKey(Cliente,null=True, related_name='cliente_recebedor_id', on_delete=models.CASCADE)
     tipo_id = models.ForeignKey(TipoTransacao, on_delete=models.CASCADE) 
-    status_id = models.ForeignKey(StatusTransacao, on_delete=models.CASCADE)
+    status_id = models.ForeignKey(StatusTransacao, on_delete=models.CASCADE, black=True, default=4)
     valor = models.FloatField()
     data_criacao = models.DateTimeField(auto_now_add=True, blank=True)
     #data_agendamento = 'alo'
