@@ -1,5 +1,8 @@
 from rest_framework import viewsets
-from conta_digital.models import Cliente, Transacoes
+
+from conta_digital.models.cliente import Cliente
+from conta_digital.models.transacoes import Transacoes
+
 from conta_digital.serializer import ClienteSerializer, TransacoesSerializer
  
 

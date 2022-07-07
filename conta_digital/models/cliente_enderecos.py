@@ -1,6 +1,5 @@
-from conta_digital.models.cliente import Cliente
 from django.db import models
-
+from conta_digital.models.cliente import Cliente
 
 
 class ClienteEnderecos(models.Model):
@@ -26,3 +25,4 @@ class ClienteEnderecos(models.Model):
    
     class Meta:
         verbose_name_plural = "Cliente Enderecos"
+        
