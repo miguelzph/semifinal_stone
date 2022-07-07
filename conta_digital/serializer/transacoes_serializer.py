@@ -6,12 +6,6 @@ from conta_digital.models.transacoes import Transacoes
 from conta_digital.models.status_transacao import StatusTransacao
 
 
-class ClienteSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Cliente
-        fields = ['nome', 'cpf', 'saldo', 'conta', 'telefone']
-      
- 
 class TransacoesSerializer(serializers.HyperlinkedModelSerializer):
     tipo_id = serializers.SlugRelatedField(
         queryset=TipoTransacao.objects.all(),
@@ -40,4 +34,3 @@ class TransacoesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Transacoes
         fields = ['url','cliente_envio_id', 'cliente_recebedor_id', 'valor', 'tipo_id', 'status_id']
-
