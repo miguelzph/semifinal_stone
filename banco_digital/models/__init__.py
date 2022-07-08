@@ -3,3 +3,4 @@
 # from conta_digital.models.tipo_transacao import TipoTransacao
 # from conta_digital.models.transacoes import Transacoes
 # from conta_digital.models.status_transacao import StatusTransacao
+from banco_digital.models.conta import Conta

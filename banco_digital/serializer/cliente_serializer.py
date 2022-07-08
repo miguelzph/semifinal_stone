@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import serializers
-from conta_digital.models.cliente import Cliente
+from banco_digital.models.cliente import Cliente
 
 
 class ClienteSerializer(serializers.HyperlinkedModelSerializer):

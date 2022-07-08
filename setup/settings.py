@@ -59,8 +59,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'conta_digital.apps.ContaDigitalConfig',
-    'rest_framework'
+    'banco_digital.apps.BancoDigitalConfig',
+    'rest_framework',
+    'localflavor'
 ]
 
 MIDDLEWARE = [

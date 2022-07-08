@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from conta_digital.models.transacoes import Transacoes
-from conta_digital.serializer.transacoes_serializer import TransacoesSerializer
+from banco_digital.models.transacoes import Transacoes
+from banco_digital.serializer.transacoes_serializer import TransacoesSerializer
 
 
 class TransacoesViewSet(viewsets.ModelViewSet):

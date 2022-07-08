@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Cliente(models.Model):
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=10, verbose_name="Nome completo")
     cpf = models.CharField(max_length=11)
     saldo = models.FloatField()
     conta = models.CharField(max_length=10)
