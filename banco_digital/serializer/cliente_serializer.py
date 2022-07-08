@@ -6,4 +6,4 @@ from banco_digital.models.cliente import Cliente
 class ClienteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Cliente
-        fields = ['nome', 'cpf', 'saldo', 'conta', 'telefone']
+        fields = ['nome', 'cpf', 'email', 'telefone']

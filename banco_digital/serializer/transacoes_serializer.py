@@ -16,13 +16,13 @@ class TransacoesSerializer(serializers.HyperlinkedModelSerializer):
     cliente_envio_id = serializers.SlugRelatedField(
         queryset=Cliente.objects.all(),
         read_only=False,
-        slug_field='conta'
+        slug_field='email'
     )
     
     cliente_recebedor_id = serializers.SlugRelatedField(
         queryset=Cliente.objects.all(),
         read_only=False,
-        slug_field='conta'
+        slug_field='email'
     )
     
     status_id = serializers.SlugRelatedField(
