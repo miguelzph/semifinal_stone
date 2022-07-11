@@ -18,12 +18,15 @@ from django.urls import path, include
 from rest_framework import routers
 
 from banco_digital.views.cliente_viewset import ClienteViewSet
-from banco_digital.views.transacoes_viewset import TransacoesViewSet
+from banco_digital.views.transacao_viewset import TransacaoViewSet
+from banco_digital.views.saque import SaqueViewSet
 
 
 router = routers.DefaultRouter()
 router.register(r'cliente', ClienteViewSet)
-router.register(r'transacoes', TransacoesViewSet)
+router.register(r'transacao', TransacaoViewSet)
+router.register(r'saque', SaqueViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),

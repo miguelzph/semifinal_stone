@@ -7,3 +7,14 @@ class ClienteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Cliente
         fields = ['nome', 'cpf', 'email', 'telefone']
+        
+    def validate_telefone(self, telefone):
+        return telefone
+    
+    def validate(self, data):
+        if not data.get('telefone').isnumeric(): # poderia usar outros campos
+            raise serializers.ValidationError('O campo deve conter apenas números!')
+        
+        return data
+        
+            

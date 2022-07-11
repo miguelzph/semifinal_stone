@@ -2,11 +2,11 @@ from django.urls import path, include
 from rest_framework import serializers
 from banco_digital.models.cliente import Cliente
 from banco_digital.models.tipo_transacao import TipoTransacao
-from banco_digital.models.transacoes import Transacoes
+from banco_digital.models.transacao import Transacao
 from banco_digital.models.status_transacao import StatusTransacao
 
 
-class TransacoesSerializer(serializers.HyperlinkedModelSerializer):
+class TransacaoSerializer(serializers.HyperlinkedModelSerializer):
     tipo_id = serializers.SlugRelatedField(
         queryset=TipoTransacao.objects.all(),
         read_only=False,
@@ -32,5 +32,5 @@ class TransacoesSerializer(serializers.HyperlinkedModelSerializer):
     )
     
     class Meta:
-        model = Transacoes
+        model = Transacao
         fields = ['url','cliente_envio_id', 'cliente_recebedor_id', 'valor', 'tipo_id', 'status_id']

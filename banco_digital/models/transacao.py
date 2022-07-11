@@ -1,15 +1,15 @@
 from django.db import models
-from banco_digital.models.cliente import Cliente
+from banco_digital.models.conta import Conta
 from banco_digital.models.tipo_transacao import TipoTransacao
 from banco_digital.models.status_transacao import StatusTransacao
 
 
-class Transacoes(models.Model):
-    cliente_envio_id = models.ForeignKey(Cliente,null=True, related_name='cliente_envio_id', on_delete=models.CASCADE)
-    cliente_recebedor_id = models.ForeignKey(Cliente,null=True, related_name='cliente_recebedor_id', on_delete=models.CASCADE)
+class Transacao(models.Model):
+    conta_cliente = models.ForeignKey(Conta,null=True, related_name='conta_id', on_delete=models.CASCADE)
     tipo_id = models.ForeignKey(TipoTransacao, on_delete=models.CASCADE) 
     status_id = models.ForeignKey(StatusTransacao, on_delete=models.CASCADE, default=1)
     valor = models.FloatField()
+    conta_implicada = models.ForeignKey(Conta,null=True, related_name='conta_implicada', on_delete=models.CASCADE)
     data_criacao = models.DateTimeField(auto_now_add=True, blank=True)
     #data_agendamento = 'alo'
     data_ultima_mudanca = models.DateTimeField(auto_now_add=True, blank=True)
