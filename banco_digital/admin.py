@@ -21,7 +21,7 @@ class TipoTransacaoAdmin(admin.ModelAdmin):
     
 class TransacaoAdmin(admin.ModelAdmin):
     list_display = ('tipo_id', 'conta_cliente', 'valor', 'status_id')
-    
+
 class ContaAdmin(admin.ModelAdmin):
     list_display = ('id','saldo')
 

@@ -4,14 +4,9 @@ from banco_digital.models.cliente import Cliente
 # depois trocar eh_principal para boolean field
 
 class ClienteEnderecos(models.Model):
-    PRINCIPAL = 'sim'
-    NAO_PRINCIPAL = 'nao'
-    
-    ENDERECO_CHOICES = [(PRINCIPAL, 'sim'),
-                        (NAO_PRINCIPAL, 'nao')]
-    
+
     cliente_id = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    eh_principal = models.CharField(max_length=3, choices=ENDERECO_CHOICES, default='sim')
+    eh_principal = models.BooleanField(default=True, blank=True)
     cep = models.CharField(max_length=8)
     rua = models.CharField(max_length=30)
     numero = models.CharField(max_length=10)
