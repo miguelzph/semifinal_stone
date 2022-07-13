@@ -6,7 +6,15 @@ from banco_digital.models.cliente import Cliente
 class ClienteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Cliente
-        fields = ['nome', 'cpf', 'email', 'telefone']
+        fields = ['id', 'nome', 'cpf', 'email', 'telefone']
+        
+    # def save(self):
+    #     nome = self.validated_data['nome']
+    #     cpf = self.validated_data['cpf']
+    #     email = self.validated_data['email']
+    #     telefone = self.validated_data['telefone']
+    #     print(self.data)
+        
         
     def validate_telefone(self, telefone):
         return telefone

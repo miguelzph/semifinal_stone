@@ -1,6 +1,7 @@
 from django.db import models
 from banco_digital.models.cliente import Cliente
 
+# depois trocar eh_principal para boolean field
 
 class ClienteEnderecos(models.Model):
     PRINCIPAL = 'sim'

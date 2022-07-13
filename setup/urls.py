@@ -19,13 +19,17 @@ from rest_framework import routers
 
 from banco_digital.views.cliente_viewset import ClienteViewSet
 from banco_digital.views.transacao_viewset import TransacaoViewSet
-from banco_digital.views.saque import SaqueViewSet
+from banco_digital.views.saque_viewset import SaqueViewSet
+from banco_digital.views.deposito_viewset import DepositoViewSet
+from banco_digital.views.transferencia_viewset import TransferenciaViewSet
 
 
 router = routers.DefaultRouter()
 router.register(r'cliente', ClienteViewSet)
-router.register(r'transacao', TransacaoViewSet)
-router.register(r'saque', SaqueViewSet)
+router.register(r'transacao', TransacaoViewSet, 'transacao')
+router.register(r'saque', SaqueViewSet, 'saque')
+router.register(r'deposito', DepositoViewSet, 'deposito')
+router.register(r'transferencia', TransferenciaViewSet, 'transferencia')
 
 
 urlpatterns = [

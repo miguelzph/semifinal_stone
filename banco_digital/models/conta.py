@@ -1,9 +1,15 @@
+from tkinter import FALSE
+from unittest.util import _MAX_LENGTH
 from django.db import models
 import banco_digital.models.cliente as model_cliente
 
+# signals imports
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 class Conta(models.Model):
     cliente = models.OneToOneField(model_cliente.Cliente, on_delete=models.CASCADE, editable=False)
+    conta = models.CharField(max_length=6, blank=True, null=True, editable=False)
     saldo = models.FloatField(default=0, blank=True)
     status = models.BooleanField(default=True, blank=True)
     
@@ -13,4 +19,8 @@ class Conta(models.Model):
     class Meta:
         verbose_name_plural = "Contas"
         
-    
+@receiver(post_save, sender=Conta)
+def cliente_created_handler(sender, instance, created, *args, **kwargs):
+    if created:
+        instance.conta = instance.id + 100000
+        instance.save()
