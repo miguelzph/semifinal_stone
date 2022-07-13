@@ -11,7 +11,7 @@ class TransferenciaViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(tipo_id=TipoTransacao.objects.get(id=3), 
-                        status_id=StatusTransacao.objects.get(id=1))
+                        status_id=StatusTransacao.objects.get(id=3))
 
         
     
