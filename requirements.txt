@@ -3,6 +3,7 @@ certifi @ file:///C:/Windows/TEMP/abs_e9b7158a-aa56-4a5b-87b6-c00d295b01fanefpc8
 charset-normalizer==2.0.12
 Django==4.0.6
 django-filter==22.1
+django-localflavor==3.1
 djangorestframework==3.13.1
 htmlmin==0.1.12
 idna==3.3
@@ -12,10 +13,10 @@ joblib==1.0.1
 Markdown==3.3.7
 missingno==0.5.1
 mysqlclient==2.1.1
-pandas-profiling==3.1.0
 phik==0.12.2
 pydantic==1.9.0
 python-dotenv==0.20.0
+python-stdnum==1.17
 pytz==2022.1
 PyYAML==6.0
 requests==2.27.1
