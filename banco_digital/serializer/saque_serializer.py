@@ -16,13 +16,13 @@ class SaqueSerializer(serializers.ModelSerializer):
     status_id = serializers.SlugRelatedField(
         queryset=StatusTransacao.objects.all(),
         read_only=False, required=False,
-        slug_field='id'
+        slug_field='status'
     )
     
     tipo_id = serializers.SlugRelatedField(
         queryset=TipoTransacao.objects.all(),
         read_only=False,
-        slug_field='id', required=False
+        slug_field='tipo', required=False
     )
     
     valor = serializers.DecimalField(max_digits=None, decimal_places=2, min_value=0.01)
