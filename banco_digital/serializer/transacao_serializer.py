@@ -1,6 +1,4 @@
-from django.urls import path, include
 from rest_framework import serializers
-from banco_digital.models.cliente import Cliente
 from banco_digital.models.tipo_transacao import TipoTransacao
 from banco_digital.models.transacao import Transacao
 from banco_digital.models.status_transacao import StatusTransacao
@@ -35,5 +33,5 @@ class TransacaoSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Transacao
-        fields = ['conta_cliente', 'valor', 'tipo_id', 'status_id', 'conta_implicada']
+        fields = ['conta_cliente', 'valor', 'tipo_id', 'status_id', 'conta_implicada', 'data_']
         lookup_field= 'pk'

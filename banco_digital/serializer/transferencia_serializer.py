@@ -32,6 +32,8 @@ class TransferenciaSerializer(serializers.ModelSerializer):
         slug_field='conta'
     )
     
+    valor = serializers.DecimalField(max_digits=None, decimal_places=2, min_value=0.01)
+    
     class Meta:
         model = Transacao
         fields = ['conta_cliente', 'valor', 'conta_implicada', 'tipo_id', 'status_id']
