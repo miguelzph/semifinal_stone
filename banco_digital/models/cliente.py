@@ -29,9 +29,9 @@ class Cliente(models.Model):
     class Meta:
         verbose_name_plural = "Cliente"
 
-# @receiver(post_save, sender=Cliente)
-# def cliente_created_handler(sender, instance, created, *args, **kwargs):
-#     if created:
-#         print(instance.email)
-#         model_conta.Conta.objects.create(cliente=instance)
+@receiver(post_save, sender=Cliente)
+def cliente_created_handler(sender, instance, created, *args, **kwargs):
+    if created:
+        print(instance.email)
+        model_conta.Conta.objects.create(cliente=instance)
     

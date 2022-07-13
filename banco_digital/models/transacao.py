@@ -37,8 +37,7 @@ def modificar_valor_saldo(conta, valor):
 
 
 def criar_transacao_espelho(transacao):
-    new_tipo_id = TipoTransacao.objects.get(id=4)
-    Transacao.objects.create(tipo_id=new_tipo_id, 
+    Transacao.objects.create(tipo_id=transacao.tipo_id.id_tipo_espelho, 
                                 status_id=transacao.status_id,
                                 conta_cliente=transacao.conta_implicada,
                                 conta_implicada = transacao.conta_cliente,
@@ -48,8 +47,8 @@ def criar_transacao_espelho(transacao):
 @receiver(pre_save, sender=Transacao)
 def transacao_create_handler(sender, instance, *args, **kwargs):
 
-    if instance.status_id.id not in [2, 3]:
-        if instance.tipo_id.id in [1,3]: 
+    if instance.status_id.id not in [1, 2]:
+        if instance.tipo_id.operacao == 'debito': 
             instance.valor = -instance.valor
         
             if not tem_saldo(instance.conta_cliente, float(instance.valor)):
@@ -58,12 +57,13 @@ def transacao_create_handler(sender, instance, *args, **kwargs):
                 raise serializers.ValidationError('A conta não possui saldo suficiente!')
 
         modificar_valor_saldo(instance.conta_cliente, float(instance.valor))
-    
-        if instance.tipo_id.id == 3:
+        
+        if instance.tipo_id.id_tipo_espelho is not None:
             # criar operação representativa do cliente que está recebendo
             criar_transacao_espelho(instance)
             
         instance.status_id = StatusTransacao.objects.get(id=1)
+    print('aqui',instance.tipo_id.id_tipo_espelho)
     instance.data_ultima_alteracao = timezone.now()
     
             
