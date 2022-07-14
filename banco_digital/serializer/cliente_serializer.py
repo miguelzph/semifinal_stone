@@ -1,28 +1,33 @@
+from django.forms import CharField
 from django.urls import path, include
 from rest_framework import serializers
 from banco_digital.models.cliente import Cliente
+from banco_digital.validators.cliente import validar_tipo_cpf_cnpj
 
 
 class ClienteSerializer(serializers.HyperlinkedModelSerializer):
+    # def validate_telefone(self, telefone):
+    #     return telefone
+    
+    # def validate(self, data):
+    #     if not data.get('telefone').isnumeric(): # poderia usar outros campos
+    #         raise serializers.ValidationError('O campo deve conter apenas números!')
+        
+    #     return data
+    
+    cpf = serializers.CharField
+    
     class Meta:
         model = Cliente
-        fields = ['id', 'nome', 'cpf', 'email', 'telefone']
-        
-    # def save(self):
-    #     nome = self.validated_data['nome']
-    #     cpf = self.validated_data['cpf']
-    #     email = self.validated_data['email']
-    #     telefone = self.validated_data['telefone']
-    #     print(self.data)
-        
-        
-    def validate_telefone(self, telefone):
-        return telefone
+        fields = ['id', 'nome', 'cpf', 'cnpj', 'email', 'telefone', 'tipo']
     
     def validate(self, data):
-        if not data.get('telefone').isnumeric(): # poderia usar outros campos
-            raise serializers.ValidationError('O campo deve conter apenas números!')
         
+        validar_tipo_cpf_cnpj(data)
+         
         return data
+    
+    
+        
         
             

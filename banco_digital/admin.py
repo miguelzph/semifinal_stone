@@ -8,7 +8,7 @@ from banco_digital.models.status_transacao import StatusTransacao
 from banco_digital.models.conta import Conta
 
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'cpf')
+    list_display = ('nome', 'cpf', 'tipo', 'cnpj')
     
 class ClienteEnderecosAdmin(admin.ModelAdmin):
     list_display = ('rua', 'numero','cliente_id')
