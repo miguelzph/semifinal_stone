@@ -8,7 +8,7 @@ class TipoTransacao(models.Model):
     OPERACAO_CHOICES = [(debito, 'debito'),
                         (credito, 'credito')]
     
-    tipo = models.CharField(max_length=30)
+    tipo = models.CharField(max_length=30, unique=True)
     descricao = models.CharField(max_length=200)
     operacao = models.CharField(choices=OPERACAO_CHOICES, max_length=8)
     id_tipo_espelho = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=models.CASCADE)
