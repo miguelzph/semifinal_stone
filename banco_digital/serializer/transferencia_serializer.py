@@ -4,6 +4,7 @@ from banco_digital.models.conta import Conta
 from banco_digital.models.transacao import Transacao
 from banco_digital.models.status_transacao import StatusTransacao
 from banco_digital.models.tipo_transacao import TipoTransacao
+from banco_digital.validators.conta import validar_ativacao_conta
 
 
 class TransferenciaSerializer(serializers.ModelSerializer):
@@ -37,3 +38,9 @@ class TransferenciaSerializer(serializers.ModelSerializer):
         model = Transacao
         fields = ["conta_cliente", "valor", "conta_implicada", "tipo_id", "status_id"]
         lookup_field = "pk"
+        
+    def validate(self, data):
+
+        validar_ativacao_conta(data)
+
+        return data

@@ -1,3 +1,8 @@
+STANDART_URL = 'http://127.0.0.1:8000/'
+
+VIEW_CLIENTE_ENDERECOS = 'cliente_enderecos'
+
+
 STATUS = {
     "agendado": {"status": "agendado", "descricao": "A transação está agendada."},
     "aguardando_aprovacao": {

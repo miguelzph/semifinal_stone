@@ -23,6 +23,7 @@ from banco_digital.views.saque_viewset import SaqueViewSet
 from banco_digital.views.deposito_viewset import DepositoViewSet
 from banco_digital.views.transferencia_viewset import TransferenciaViewSet
 from banco_digital.views.conta_viewset import ContaViewSet
+from banco_digital.views.cliente_enderecos_viewset import ClienteEnderecosViewSet
 
 
 router = routers.DefaultRouter()
@@ -32,6 +33,8 @@ router.register(r"saque", SaqueViewSet, "saque")
 router.register(r"deposito", DepositoViewSet, "deposito")
 router.register(r"transferencia", TransferenciaViewSet, "transferencia")
 router.register(r"conta", ContaViewSet, "conta")
+router.register(r"cliente_enderecos", ClienteEnderecosViewSet, "cliente_enderecos")
+
 
 
 urlpatterns = [

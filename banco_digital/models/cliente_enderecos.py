@@ -1,7 +1,8 @@
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from banco_digital.models.cliente import Cliente
-
-# depois trocar eh_principal para boolean field
+from banco_digital.models.conta import Conta
 
 
 class ClienteEnderecos(models.Model):
@@ -22,3 +23,9 @@ class ClienteEnderecos(models.Model):
 
     class Meta:
         verbose_name_plural = "Cliente Enderecos"
+
+
+@receiver(post_save, sender=ClienteEnderecos)
+def cliente_created_handler(sender, instance, created, *args, **kwargs):
+    if created:
+        Conta.objects.filter(cliente=instance.cliente_id).update(liberada=True)

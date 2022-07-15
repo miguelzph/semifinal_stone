@@ -1,5 +1,4 @@
 from rest_framework.serializers import ValidationError
-from django.core.exceptions import ValidationError
 
 
 def validar_campo_numerico(value):

@@ -3,6 +3,7 @@ from banco_digital.models.conta import Conta
 from banco_digital.models.transacao import Transacao
 from banco_digital.models.status_transacao import StatusTransacao
 from banco_digital.models.tipo_transacao import TipoTransacao
+from banco_digital.validators.conta import validar_ativacao_conta
 
 
 class DepositoSerializer(serializers.ModelSerializer):
@@ -25,6 +26,13 @@ class DepositoSerializer(serializers.ModelSerializer):
     )
 
     valor = serializers.DecimalField(max_digits=None, decimal_places=2, min_value=0.01)
+    
+    def validate(self, data):
+
+        validar_ativacao_conta(data)
+
+        return data
+
 
     class Meta:
         model = Transacao

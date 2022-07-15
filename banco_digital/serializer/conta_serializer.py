@@ -5,10 +5,11 @@ from banco_digital.serializer.cliente_serializer import ClienteSerializer
 
 
 class ContaSerializer(serializers.HyperlinkedModelSerializer):
+    
     # cliente = serializers.SlugRelatedField(
     #     queryset=Cliente.objects.all(),
     #     read_only=False,
-    #     required=False,
+    #     required=True,
     #     slug_field="nome",
     # )
     
