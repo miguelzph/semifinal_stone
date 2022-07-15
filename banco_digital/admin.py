@@ -23,7 +23,7 @@ class TransacaoAdmin(admin.ModelAdmin):
     list_display = ('tipo_id', 'conta_cliente', 'valor', 'status_id')
 
 class ContaAdmin(admin.ModelAdmin):
-    list_display = ('id','saldo')
+    list_display = ('id','saldo', 'conta', 'cliente')
 
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(ClienteEnderecos, ClienteEnderecosAdmin)
