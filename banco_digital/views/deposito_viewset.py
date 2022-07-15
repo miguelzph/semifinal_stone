@@ -8,9 +8,9 @@ from banco_digital.serializer.deposito_serializer import DepositoSerializer
 class DepositoViewSet(viewsets.ModelViewSet):
     queryset = Transacao.objects.all()
     serializer_class = DepositoSerializer
-    
+
     def perform_create(self, serializer):
-        serializer.save(tipo_id=TipoTransacao.objects.get(id=2), 
-                        status_id=StatusTransacao.objects.get(id=3))
-
-
+        serializer.save(
+            tipo_id=TipoTransacao.objects.get(id=2),
+            status_id=StatusTransacao.objects.get(id=3),
+        )

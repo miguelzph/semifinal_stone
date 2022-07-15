@@ -26,16 +26,16 @@ from banco_digital.views.conta_viewset import ContaViewSet
 
 
 router = routers.DefaultRouter()
-router.register(r'cliente', ClienteViewSet)
-router.register(r'transacao', TransacaoViewSet, 'transacao')
-router.register(r'saque', SaqueViewSet, 'saque')
-router.register(r'deposito', DepositoViewSet, 'deposito')
-router.register(r'transferencia', TransferenciaViewSet, 'transferencia')
-router.register(r'conta', ContaViewSet, 'conta')
+router.register(r"cliente", ClienteViewSet)
+router.register(r"transacao", TransacaoViewSet, "transacao")
+router.register(r"saque", SaqueViewSet, "saque")
+router.register(r"deposito", DepositoViewSet, "deposito")
+router.register(r"transferencia", TransferenciaViewSet, "transferencia")
+router.register(r"conta", ContaViewSet, "conta")
 
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls'))
+    path("", include(router.urls)),
+    path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
 ]

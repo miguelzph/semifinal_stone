@@ -8,33 +8,32 @@ from banco_digital.models.tipo_transacao import TipoTransacao
 
 class TransferenciaSerializer(serializers.ModelSerializer):
     conta_cliente = serializers.SlugRelatedField(
-        queryset=Conta.objects.all(),
-        read_only=False,
-        slug_field='conta'
+        queryset=Conta.objects.all(), read_only=False, slug_field="conta"
     )
-    
+
     status_id = serializers.SlugRelatedField(
         queryset=StatusTransacao.objects.all(),
-        read_only=False, required=False, default=StatusTransacao.objects.get(id=1),
-        slug_field='status'
+        read_only=False,
+        required=False,
+        default=StatusTransacao.objects.get(id=1),
+        slug_field="status",
     )
-    
-    
+
     tipo_id = serializers.SlugRelatedField(
         queryset=TipoTransacao.objects.all(),
         read_only=False,
-        slug_field='tipo', required=False, default=TipoTransacao.objects.get(id=3)
+        slug_field="tipo",
+        required=False,
+        default=TipoTransacao.objects.get(id=3),
     )
-    
+
     conta_implicada = serializers.SlugRelatedField(
-        queryset=Conta.objects.all(),
-        read_only=False,
-        slug_field='conta'
+        queryset=Conta.objects.all(), read_only=False, slug_field="conta"
     )
-    
+
     valor = serializers.DecimalField(max_digits=None, decimal_places=2, min_value=0.01)
-    
+
     class Meta:
         model = Transacao
-        fields = ['conta_cliente', 'valor', 'conta_implicada', 'tipo_id', 'status_id']
-        lookup_field= 'pk'
+        fields = ["conta_cliente", "valor", "conta_implicada", "tipo_id", "status_id"]
+        lookup_field = "pk"

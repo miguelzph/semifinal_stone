@@ -10,97 +10,234 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Cliente',
+            name="Cliente",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=100)),
-                ('tipo', models.CharField(choices=[('pf', 'pf'), ('pj', 'pj')], max_length=6)),
-                ('cpf', localflavor.br.models.BRCPFField(blank=True, max_length=14, null=True, unique=True, validators=[banco_digital.validators.cliente.validate_cpf])),
-                ('cnpj', localflavor.br.models.BRCNPJField(blank=True, max_length=18, null=True, unique=True, validators=[banco_digital.validators.cliente.validate_cpf])),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('telefone', models.CharField(max_length=11)),
-                ('data_cadastro', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome", models.CharField(max_length=100)),
+                (
+                    "tipo",
+                    models.CharField(
+                        choices=[("pf", "pf"), ("pj", "pj")], max_length=6
+                    ),
+                ),
+                (
+                    "cpf",
+                    localflavor.br.models.BRCPFField(
+                        blank=True,
+                        max_length=14,
+                        null=True,
+                        unique=True,
+                        validators=[banco_digital.validators.cliente.validate_cpf],
+                    ),
+                ),
+                (
+                    "cnpj",
+                    localflavor.br.models.BRCNPJField(
+                        blank=True,
+                        max_length=18,
+                        null=True,
+                        unique=True,
+                        validators=[banco_digital.validators.cliente.validate_cpf],
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                ("telefone", models.CharField(max_length=11)),
+                ("data_cadastro", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'verbose_name_plural': 'Cliente',
+                "verbose_name_plural": "Cliente",
             },
         ),
         migrations.CreateModel(
-            name='Conta',
+            name="Conta",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('conta', models.CharField(blank=True, editable=False, max_length=6, null=True)),
-                ('saldo', models.FloatField(blank=True, default=0)),
-                ('liberada', models.BooleanField(blank=True, default=False)),
-                ('cliente', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='banco_digital.cliente')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "conta",
+                    models.CharField(
+                        blank=True, editable=False, max_length=6, null=True
+                    ),
+                ),
+                ("saldo", models.FloatField(blank=True, default=0)),
+                ("liberada", models.BooleanField(blank=True, default=False)),
+                (
+                    "cliente",
+                    models.OneToOneField(
+                        editable=False,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="banco_digital.cliente",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Contas',
+                "verbose_name_plural": "Contas",
             },
         ),
         migrations.CreateModel(
-            name='StatusTransacao',
+            name="StatusTransacao",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(max_length=30)),
-                ('descricao', models.CharField(max_length=200)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("status", models.CharField(max_length=30)),
+                ("descricao", models.CharField(max_length=200)),
             ],
             options={
-                'verbose_name_plural': 'Status Transacao',
+                "verbose_name_plural": "Status Transacao",
             },
         ),
         migrations.CreateModel(
-            name='TipoTransacao',
+            name="TipoTransacao",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tipo', models.CharField(max_length=30)),
-                ('descricao', models.CharField(max_length=200)),
-                ('operacao', models.CharField(choices=[('debito', 'debito'), ('credito', 'credito')], max_length=8)),
-                ('id_tipo_espelho', models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, to='banco_digital.tipotransacao')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("tipo", models.CharField(max_length=30)),
+                ("descricao", models.CharField(max_length=200)),
+                (
+                    "operacao",
+                    models.CharField(
+                        choices=[("debito", "debito"), ("credito", "credito")],
+                        max_length=8,
+                    ),
+                ),
+                (
+                    "id_tipo_espelho",
+                    models.ForeignKey(
+                        blank=True,
+                        default=None,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="banco_digital.tipotransacao",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Tipo Transacao',
+                "verbose_name_plural": "Tipo Transacao",
             },
         ),
         migrations.CreateModel(
-            name='Transacao',
+            name="Transacao",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('valor', models.FloatField()),
-                ('data_criacao', models.DateTimeField(auto_now_add=True)),
-                ('data_ultima_alteracao', models.DateTimeField(auto_now_add=True)),
-                ('data_agendamento', models.DateTimeField(blank=True, default=None, null=True)),
-                ('conta_cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='conta_id', to='banco_digital.conta')),
-                ('conta_implicada', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='conta_implicada', to='banco_digital.conta')),
-                ('status_id', models.ForeignKey(default=1, null=True, on_delete=django.db.models.deletion.CASCADE, to='banco_digital.statustransacao')),
-                ('tipo_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='banco_digital.tipotransacao')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("valor", models.FloatField()),
+                ("data_criacao", models.DateTimeField(auto_now_add=True)),
+                ("data_ultima_alteracao", models.DateTimeField(auto_now_add=True)),
+                (
+                    "data_agendamento",
+                    models.DateTimeField(blank=True, default=None, null=True),
+                ),
+                (
+                    "conta_cliente",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="conta_id",
+                        to="banco_digital.conta",
+                    ),
+                ),
+                (
+                    "conta_implicada",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="conta_implicada",
+                        to="banco_digital.conta",
+                    ),
+                ),
+                (
+                    "status_id",
+                    models.ForeignKey(
+                        default=1,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="banco_digital.statustransacao",
+                    ),
+                ),
+                (
+                    "tipo_id",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="banco_digital.tipotransacao",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Transacoes',
+                "verbose_name_plural": "Transacoes",
             },
         ),
         migrations.CreateModel(
-            name='ClienteEnderecos',
+            name="ClienteEnderecos",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('eh_principal', models.BooleanField(blank=True, default=True)),
-                ('cep', models.CharField(max_length=8)),
-                ('rua', models.CharField(max_length=30)),
-                ('numero', models.CharField(max_length=10)),
-                ('bairro', models.CharField(max_length=20)),
-                ('complemento', models.CharField(max_length=50)),
-                ('cidade', models.CharField(max_length=20)),
-                ('estado', models.CharField(max_length=20)),
-                ('pais', models.CharField(max_length=20)),
-                ('cliente_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='banco_digital.cliente')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("eh_principal", models.BooleanField(blank=True, default=True)),
+                ("cep", models.CharField(max_length=8)),
+                ("rua", models.CharField(max_length=30)),
+                ("numero", models.CharField(max_length=10)),
+                ("bairro", models.CharField(max_length=20)),
+                ("complemento", models.CharField(max_length=50)),
+                ("cidade", models.CharField(max_length=20)),
+                ("estado", models.CharField(max_length=20)),
+                ("pais", models.CharField(max_length=20)),
+                (
+                    "cliente_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="banco_digital.cliente",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Cliente Enderecos',
+                "verbose_name_plural": "Cliente Enderecos",
             },
         ),
     ]

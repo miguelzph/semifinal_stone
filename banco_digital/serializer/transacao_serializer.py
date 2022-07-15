@@ -7,31 +7,33 @@ from banco_digital.models.conta import Conta
 
 class TransacaoSerializer(serializers.HyperlinkedModelSerializer):
     tipo_id = serializers.SlugRelatedField(
-        queryset=TipoTransacao.objects.all(),
-        read_only=False,
-        slug_field='tipo'
+        queryset=TipoTransacao.objects.all(), read_only=False, slug_field="tipo"
     )
-    
+
     conta_cliente = serializers.SlugRelatedField(
-        queryset=Conta.objects.all(),
-        read_only=False,
-        slug_field='conta'
+        queryset=Conta.objects.all(), read_only=False, slug_field="conta"
     )
-    
 
     conta_implicada = serializers.SlugRelatedField(
-        queryset=Conta.objects.all(),
-        read_only=False,
-        slug_field='conta', required=True
+        queryset=Conta.objects.all(), read_only=False, slug_field="conta", required=True
     )
-    
+
     status_id = serializers.SlugRelatedField(
         queryset=StatusTransacao.objects.all(),
         read_only=False,
-        slug_field='status', required=False, default=None
+        slug_field="status",
+        required=False,
+        default=None,
     )
-    
+
     class Meta:
         model = Transacao
-        fields = ['conta_cliente', 'valor', 'tipo_id', 'status_id', 'conta_implicada', 'data_']
-        lookup_field= 'pk'
+        fields = [
+            "conta_cliente",
+            "valor",
+            "tipo_id",
+            "status_id",
+            "conta_implicada",
+            "data_",
+        ]
+        lookup_field = "pk"

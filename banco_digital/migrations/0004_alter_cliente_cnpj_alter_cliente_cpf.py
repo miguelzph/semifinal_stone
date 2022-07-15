@@ -7,18 +7,22 @@ import localflavor.br.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('banco_digital', '0003_alter_cliente_cnpj_alter_cliente_cpf_and_more'),
+        ("banco_digital", "0003_alter_cliente_cnpj_alter_cliente_cpf_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cliente',
-            name='cnpj',
-            field=localflavor.br.models.BRCNPJField(blank=True, max_length=18, null=True),
+            model_name="cliente",
+            name="cnpj",
+            field=localflavor.br.models.BRCNPJField(
+                blank=True, max_length=18, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='cliente',
-            name='cpf',
-            field=localflavor.br.models.BRCPFField(blank=True, max_length=14, null=True),
+            model_name="cliente",
+            name="cpf",
+            field=localflavor.br.models.BRCPFField(
+                blank=True, max_length=14, null=True
+            ),
         ),
     ]

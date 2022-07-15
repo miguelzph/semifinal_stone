@@ -3,6 +3,7 @@ from banco_digital.models.cliente import Cliente
 
 # depois trocar eh_principal para boolean field
 
+
 class ClienteEnderecos(models.Model):
 
     cliente_id = models.ForeignKey(Cliente, on_delete=models.CASCADE)
@@ -15,10 +16,9 @@ class ClienteEnderecos(models.Model):
     cidade = models.CharField(max_length=20)
     estado = models.CharField(max_length=20)
     pais = models.CharField(max_length=20)
-    
+
     def __str__(self) -> str:
-        return self.rua + ', ' + self.numero
-   
+        return self.rua + ", " + self.numero
+
     class Meta:
         verbose_name_plural = "Cliente Enderecos"
-        

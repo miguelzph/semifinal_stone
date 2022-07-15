@@ -8,11 +8,9 @@ from banco_digital.serializer.transferencia_serializer import TransferenciaSeria
 class TransferenciaViewSet(viewsets.ModelViewSet):
     queryset = Transacao.objects.all()
     serializer_class = TransferenciaSerializer
-    
+
     def perform_create(self, serializer):
-        serializer.save(tipo_id=TipoTransacao.objects.get(id=3), 
-                        status_id=StatusTransacao.objects.get(id=3))
-
-        
-    
-
+        serializer.save(
+            tipo_id=TipoTransacao.objects.get(id=3),
+            status_id=StatusTransacao.objects.get(id=3),
+        )

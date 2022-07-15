@@ -7,23 +7,27 @@ import localflavor.br.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('banco_digital', '0002_alter_statustransacao_status_and_more'),
+        ("banco_digital", "0002_alter_statustransacao_status_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cliente',
-            name='cnpj',
-            field=localflavor.br.models.BRCNPJField(blank=True, max_length=18, null=True, unique=True),
+            model_name="cliente",
+            name="cnpj",
+            field=localflavor.br.models.BRCNPJField(
+                blank=True, max_length=18, null=True, unique=True
+            ),
         ),
         migrations.AlterField(
-            model_name='cliente',
-            name='cpf',
-            field=localflavor.br.models.BRCPFField(blank=True, max_length=14, null=True, unique=True),
+            model_name="cliente",
+            name="cpf",
+            field=localflavor.br.models.BRCPFField(
+                blank=True, max_length=14, null=True, unique=True
+            ),
         ),
         migrations.AlterField(
-            model_name='cliente',
-            name='tipo',
-            field=models.CharField(choices=[('PF', 'PF'), ('PJ', 'PJ')], max_length=2),
+            model_name="cliente",
+            name="tipo",
+            field=models.CharField(choices=[("PF", "PF"), ("PJ", "PJ")], max_length=2),
         ),
     ]
