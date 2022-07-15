@@ -1,9 +1,5 @@
-from tkinter import FALSE
-from unittest.util import _MAX_LENGTH
 from django.db import models
 import banco_digital.models.cliente as model_cliente
-
-# signals imports
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
@@ -18,7 +14,7 @@ class Conta(models.Model):
 
     def __str__(self) -> str:
         return (
-            f"{self.cliente.nome} - {self.id}"  # isso ou adiciona no list field a conta
+            f"{self.cliente.nome} - {self.conta}"  # isso ou adiciona no list field a conta
         )
 
     class Meta:

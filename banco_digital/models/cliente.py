@@ -1,11 +1,6 @@
 from django.db import models
 from localflavor.br.models import BRCPFField, BRCNPJField
 from banco_digital.validators.cliente import validate_cpf, validar_campo_numerico
-import banco_digital.models.conta as model_conta
-
-# signals imports
-from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
 
 
 class Cliente(models.Model):

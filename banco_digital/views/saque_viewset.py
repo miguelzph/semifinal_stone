@@ -3,10 +3,10 @@ from banco_digital.models.transacao import Transacao
 from banco_digital.models.status_transacao import StatusTransacao
 from banco_digital.models.tipo_transacao import TipoTransacao
 from banco_digital.serializer.saque_serializer import SaqueSerializer
-from rest_framework.response import Response
+from rest_framework import mixins
 
 
-class SaqueViewSet(viewsets.ModelViewSet):
+class SaqueViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = Transacao.objects.all()
     serializer_class = SaqueSerializer
 
