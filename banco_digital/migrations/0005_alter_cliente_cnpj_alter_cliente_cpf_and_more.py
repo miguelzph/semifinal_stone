@@ -8,23 +8,36 @@ import localflavor.br.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('banco_digital', '0004_alter_cliente_cnpj_alter_cliente_cpf'),
+        ("banco_digital", "0004_alter_cliente_cnpj_alter_cliente_cpf"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cliente',
-            name='cnpj',
-            field=localflavor.br.models.BRCNPJField(blank=True, max_length=18, null=True, validators=[banco_digital.validators.cliente.validar_campo_numerico]),
+            model_name="cliente",
+            name="cnpj",
+            field=localflavor.br.models.BRCNPJField(
+                blank=True,
+                max_length=18,
+                null=True,
+                validators=[banco_digital.validators.cliente.validar_campo_numerico],
+            ),
         ),
         migrations.AlterField(
-            model_name='cliente',
-            name='cpf',
-            field=localflavor.br.models.BRCPFField(blank=True, max_length=14, null=True, validators=[banco_digital.validators.cliente.validar_campo_numerico]),
+            model_name="cliente",
+            name="cpf",
+            field=localflavor.br.models.BRCPFField(
+                blank=True,
+                max_length=14,
+                null=True,
+                validators=[banco_digital.validators.cliente.validar_campo_numerico],
+            ),
         ),
         migrations.AlterField(
-            model_name='cliente',
-            name='telefone',
-            field=models.CharField(max_length=11, validators=[banco_digital.validators.cliente.validar_campo_numerico]),
+            model_name="cliente",
+            name="telefone",
+            field=models.CharField(
+                max_length=11,
+                validators=[banco_digital.validators.cliente.validar_campo_numerico],
+            ),
         ),
     ]

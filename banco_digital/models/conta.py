@@ -13,9 +13,7 @@ class Conta(models.Model):
     liberada = models.BooleanField(default=False, blank=True)
 
     def __str__(self) -> str:
-        return (
-            f"{self.cliente.nome} - {self.conta}"  # isso ou adiciona no list field a conta
-        )
+        return f"{self.cliente.nome} - {self.conta}"  # isso ou adiciona no list field a conta
 
     class Meta:
         verbose_name_plural = "Contas"

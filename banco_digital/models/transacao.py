@@ -2,9 +2,11 @@ from django.db import models
 from banco_digital.models.conta import Conta
 from banco_digital.models.tipo_transacao import TipoTransacao
 from banco_digital.models.status_transacao import StatusTransacao
+from banco_digital.constants.models_constants import STATUS
+
 
 from django.dispatch import receiver
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save
 from rest_framework import serializers
 from django.utils import timezone
 
@@ -60,15 +62,20 @@ def criar_transacao_espelho(transacao):
 @receiver(pre_save, sender=Transacao)
 def transacao_create_handler(sender, instance, *args, **kwargs):
 
-    if instance.status_id.id not in [1, 2]:
+    if instance.status_id.status not in [
+        STATUS["finalizado"]["status"],
+        STATUS["cancelado"]["status"],
+    ]:
         if instance.tipo_id.operacao == "debito":
             instance.valor = -instance.valor
 
             if not tem_saldo(instance.conta_cliente, float(instance.valor)):
-                instance.status_id = StatusTransacao.objects.get(id=2)
+                instance.status_id = StatusTransacao.objects.get(
+                    status=STATUS["cancelado"]["status"]
+                )
                 instance.save()
                 raise serializers.ValidationError(
-                    "A conta não possui saldo suficiente!"
+                    {"saldo": "A conta não possui saldo suficiente!"}
                 )
 
         modificar_valor_saldo(instance.conta_cliente, float(instance.valor))
@@ -77,6 +84,8 @@ def transacao_create_handler(sender, instance, *args, **kwargs):
             # criar operação representativa do cliente que está recebendo
             criar_transacao_espelho(instance)
 
-        instance.status_id = StatusTransacao.objects.get(id=1)
-    print("aqui", instance.tipo_id.id_tipo_espelho)
+        instance.status_id = StatusTransacao.objects.get(
+            status=STATUS["finalizado"]["status"]
+        )
+
     instance.data_ultima_alteracao = timezone.now()
