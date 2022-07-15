@@ -38,7 +38,7 @@ class TransferenciaSerializer(serializers.ModelSerializer):
         model = Transacao
         fields = ["conta_cliente", "valor", "conta_implicada", "tipo_id", "status_id"]
         lookup_field = "pk"
-        
+
     def validate(self, data):
 
         validar_ativacao_conta(data)
