@@ -6,7 +6,7 @@ from rest_framework.serializers import ValidationError
 
 
 def validar_ativacao_conta(data):
-    """Verifica se a conta_cliente, e caso houver,a conta implicada estão 
+    """Verifica se a conta_cliente, e caso houver,a conta implicada estão
     liberadas para transaões. Se estiver liberada não retorna nada, e se não
     estiver liberada resulta em erro.
 

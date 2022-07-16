@@ -9,7 +9,7 @@ from banco_digital.models.conta import Conta
 
 
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ("id", "nome", "cpf", "tipo", "cnpj")
+    list_display = ("id", "nome", "email", "cpf", "tipo", "cnpj")
 
 
 class ClienteEnderecosAdmin(admin.ModelAdmin):
