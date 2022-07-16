@@ -6,6 +6,7 @@ from banco_digital.models.conta import Conta
 
 
 class ClienteEnderecos(models.Model):
+    """Classe que representa os endereços de um cliente"""
 
     cliente_id = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     eh_principal = models.BooleanField(default=True, blank=True)
@@ -26,6 +27,9 @@ class ClienteEnderecos(models.Model):
 
 
 @receiver(post_save, sender=ClienteEnderecos)
-def cliente_created_handler(sender, instance, created, *args, **kwargs):
+def liberar_conta(sender, instance, created, *args, **kwargs):
+    """Após a criação de um endereço para o cliente, o cadastro do cliente
+    é dado como completo, e a conta do cliente é liberada para transações
+    """
     if created:
         Conta.objects.filter(cliente=instance.cliente_id).update(liberada=True)

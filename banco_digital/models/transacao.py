@@ -12,6 +12,8 @@ from django.utils import timezone
 
 
 class Transacao(models.Model):
+    """Classe que representa as transações de uma conta"""
+
     conta_cliente = models.ForeignKey(
         Conta, related_name="conta_id", on_delete=models.CASCADE
     )
@@ -39,10 +41,24 @@ class Transacao(models.Model):
 
 
 def tem_saldo(conta, valor):
+    """Valida se o cliente possui saldo suficiente para realizer a transação
+
+    Returns:
+        bool:True se o cliente possui saldo suficiente, e falso caso não possua
+    """
     return True if (conta.saldo + valor) > 0 else False
 
 
 def modificar_valor_saldo(conta, valor):
+    """Modifica o valor do saldo da conta de um cliente
+
+    Args:
+        conta (Conta): instancia da conta do cliente
+        valor (float): valor da transação
+
+    Returns:
+        None
+    """
     conta.saldo = conta.saldo + valor
     conta.save()
 
@@ -50,6 +66,11 @@ def modificar_valor_saldo(conta, valor):
 
 
 def criar_transacao_espelho(transacao):
+    """Gera uma transacao espelho, com base em outra instancia de transacao
+
+    Args:
+        transacao (Transacao): instancia da que gerará a transação espelho
+    """
     Transacao.objects.create(
         tipo_id=transacao.tipo_id.id_tipo_espelho,
         status_id=transacao.status_id,
@@ -58,9 +79,26 @@ def criar_transacao_espelho(transacao):
         valor=-transacao.valor,
     )
 
+    return None
+
 
 @receiver(pre_save, sender=Transacao)
 def transacao_create_handler(sender, instance, *args, **kwargs):
+    """Antes de salvar a transacao no Banco de Dados, realiza algumas tarefas:
+    - Valida se a transação NÃO está (finalizada ou cancelada)
+    - Valida se o cliente possui saldo suficiente em caso de operação = debito
+        - Se não possuir salva a transação como cancelada e erro no request
+        - Se possuir, modifica o saldo
+    - Verifica e gerá uma transação espelho caso se tipo de transação gere uma
+
+    Args:
+        instance (Transacao): instancia de transacao que será adicionada ao banco
+
+    Raises:
+        serializers.ValidationError: Cliente não possui saldo
+
+    Obs: Apesar do erro a transação é salva no banco como cancelada
+    """
 
     if instance.status_id.status not in [
         STATUS["finalizado"]["status"],

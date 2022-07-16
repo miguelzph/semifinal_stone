@@ -5,6 +5,13 @@ from django.db.models.signals import post_save
 
 
 class Conta(models.Model):
+    """Classe que representa a conta de um cliente
+
+    Args:
+        conta: por default é id da conta + 100000
+
+    """
+
     cliente = models.OneToOneField(
         model_cliente.Cliente, on_delete=models.CASCADE, editable=False
     )
@@ -21,6 +28,7 @@ class Conta(models.Model):
 
 @receiver(post_save, sender=Conta)
 def cliente_created_handler(sender, instance, created, *args, **kwargs):
+    """Após a criação de uma conta gerá o número padrão da conta"""
     if created:
         instance.conta = instance.id + 100000
         instance.save()
