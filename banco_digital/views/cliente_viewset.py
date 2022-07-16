@@ -14,13 +14,20 @@ class ClienteViewSet(CreateModelMixin, GenericViewSet):
     serializer_class = ClienteSerializer
 
     def create(self, request, *args, **kwargs):
+        """Função que cria o cliente.
+        Funcionamento:
+            - Padroniza email para lower
+            - Cria o cliente fazendo todas as validações
+            - Cria a conta
+
+        Returns:
+            Response: Dados do cliente + número da conta
+        """
 
         if request.data.get("email"):
             request.data["email"] = request.data["email"].lower()
 
         super().create(request, *args, **kwargs)
-
-        print(request)
 
         # Criando a conta do cliente
         if request.data["tipo"] == "PF":

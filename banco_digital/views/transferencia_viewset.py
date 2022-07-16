@@ -8,6 +8,8 @@ from rest_framework import mixins
 
 
 class TransferenciaViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    """ViewSet que permite criar uma transacao do tipo transferencia(interna)."""
+
     queryset = Transacao.objects.all()
     serializer_class = TransferenciaSerializer
 

@@ -8,6 +8,8 @@ from rest_framework import mixins
 
 
 class SaqueViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    """ViewSet que permite criar uma transacao do tipo saque."""
+
     queryset = Transacao.objects.all()
     serializer_class = SaqueSerializer
 

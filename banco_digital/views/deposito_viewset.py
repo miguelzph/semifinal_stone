@@ -9,6 +9,8 @@ from rest_framework import mixins
 
 
 class DepositoViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    """ViewSet que permite criar uma transacao do tipo deposito."""
+
     queryset = Transacao.objects.all()
     serializer_class = DepositoSerializer
 
