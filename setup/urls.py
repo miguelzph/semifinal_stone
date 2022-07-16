@@ -18,17 +18,17 @@ from django.urls import path, include
 from rest_framework import routers
 
 from banco_digital.views.cliente_viewset import ClienteViewSet
-from banco_digital.views.transacao_viewset import TransacaoViewSet
 from banco_digital.views.saque_viewset import SaqueViewSet
 from banco_digital.views.deposito_viewset import DepositoViewSet
 from banco_digital.views.transferencia_viewset import TransferenciaViewSet
 from banco_digital.views.conta_viewset import ContaViewSet
 from banco_digital.views.cliente_enderecos_viewset import ClienteEnderecosViewSet
+from banco_digital.views.lista_conta_transacao_viewset import ListaContaTransacaoViewSet
 
 
 router = routers.DefaultRouter()
 router.register(r"cliente", ClienteViewSet)
-router.register(r"transacao", TransacaoViewSet, "transacao")
+# router.register(r"transacao", TransacaoViewSet, "transacao")
 router.register(r"saque", SaqueViewSet, "saque")
 router.register(r"deposito", DepositoViewSet, "deposito")
 router.register(r"transferencia", TransferenciaViewSet, "transferencia")
@@ -36,9 +36,9 @@ router.register(r"conta", ContaViewSet, "conta")
 router.register(r"cliente_enderecos", ClienteEnderecosViewSet, "cliente_enderecos")
 
 
-
 urlpatterns = [
     path("", include(router.urls)),
     path("admin/", admin.site.urls),
+    path("conta/<str:conta_cliente>/transacoes", ListaContaTransacaoViewSet.as_view()),
     path("api-auth/", include("rest_framework.urls")),
 ]

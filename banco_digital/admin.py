@@ -9,11 +9,11 @@ from banco_digital.models.conta import Conta
 
 
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ("nome", "cpf", "tipo", "cnpj")
+    list_display = ("id", "nome", "cpf", "tipo", "cnpj")
 
 
 class ClienteEnderecosAdmin(admin.ModelAdmin):
-    list_display = ("rua", "numero", "cliente_id")
+    list_display = ("id", "rua", "numero", "cliente_id")
 
 
 class StatusTransacaoAdmin(admin.ModelAdmin):
@@ -21,11 +21,11 @@ class StatusTransacaoAdmin(admin.ModelAdmin):
 
 
 class TipoTransacaoAdmin(admin.ModelAdmin):
-    list_display = ("tipo", "descricao")
+    list_display = ("id", "tipo", "descricao")
 
 
 class TransacaoAdmin(admin.ModelAdmin):
-    list_display = ("tipo_id", "conta_cliente", "valor", "status_id")
+    list_display = ("id", "tipo_id", "conta_cliente", "valor", "status_id")
 
 
 class ContaAdmin(admin.ModelAdmin):

@@ -87,7 +87,7 @@ def transacao_create_handler(sender, instance, *args, **kwargs):
     """Antes de salvar a transacao no Banco de Dados, realiza algumas tarefas:
     - Valida se a transação NÃO está (finalizada ou cancelada)
     - Valida se o cliente possui saldo suficiente em caso de operação = debito
-        - Se não possuir salva a transação como cancelada e erro no request
+        - Se não possuir, salva a transação como cancelada e erro no request
         - Se possuir, modifica o saldo
     - Verifica e gerá uma transação espelho caso se tipo de transação gere uma
 
