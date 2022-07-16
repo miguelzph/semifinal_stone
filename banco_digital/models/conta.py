@@ -27,7 +27,7 @@ class Conta(models.Model):
 
 
 @receiver(post_save, sender=Conta)
-def cliente_created_handler(sender, instance, created, *args, **kwargs):
+def conta_created_handler(sender, instance, created, *args, **kwargs):
     """Após a criação de uma conta gerá o número padrão da conta"""
     if created:
         instance.conta = instance.id + 100000
