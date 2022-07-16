@@ -1,6 +1,6 @@
 from django.db import models
 from localflavor.br.models import BRCPFField, BRCNPJField
-from banco_digital.validators.cliente import validate_cpf, validar_campo_numerico
+from banco_digital.validators.cliente import validar_campo_numerico
 
 
 class Cliente(models.Model):

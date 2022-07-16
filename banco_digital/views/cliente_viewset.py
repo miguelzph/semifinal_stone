@@ -31,7 +31,9 @@ class ClienteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
             conta = Conta.objects.create(
                 cliente=Cliente.objects.get(cnpj=request.data["cnpj"])
             )
-
+        
         request.data["conta"] = conta.conta
 
         return Response(request.data, status=status.HTTP_201_CREATED)
+
+

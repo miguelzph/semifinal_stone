@@ -15,7 +15,7 @@ class ClienteSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Cliente
-        fields = ["nome", "cpf", "cnpj", "email", "telefone", "tipo"]
+        fields = ["id", "nome", "cpf", "cnpj", "email", "telefone", "tipo"]
 
     def validate(self, data):
 
