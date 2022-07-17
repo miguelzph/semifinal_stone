@@ -135,4 +135,4 @@ def transacao_create_handler(sender, instance, *args, **kwargs):
             status=STATUS["finalizado"]["status"]
         )
 
-    instance.data_ultima_alteracao = timezone.now()
+    instance.data_ultima_alteracao = timezone.now
