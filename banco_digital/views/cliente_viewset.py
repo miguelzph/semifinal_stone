@@ -20,7 +20,7 @@ class ClienteViewSet(CreateModelMixin, GenericViewSet):
             - Cria o cliente fazendo todas as validações
             - Cria a conta
 
-    
+
         Response: Dados do cliente + número da conta
         """
 
