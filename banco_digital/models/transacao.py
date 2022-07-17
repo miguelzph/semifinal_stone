@@ -12,7 +12,15 @@ from django.utils import timezone
 
 
 class Transacao(models.Model):
-    """Classe que representa as transações de uma conta"""
+
+    """Classe que representa as transações de uma conta
+    Args:
+        conta_implicada (Conta): conta para qual a transacao foi alvo
+            - se o tipo transação gera débito --> conta_implicada = conta que está enviando
+            - se o tipo transação gera crédito --> conta_implicada = conta que está recebendo
+            - se None: o tipo de transação não impacta outra conta
+
+    """
 
     conta_cliente = models.ForeignKey(
         Conta, related_name="conta_id", on_delete=models.CASCADE
@@ -87,7 +95,7 @@ def transacao_create_handler(sender, instance, *args, **kwargs):
     """Antes de salvar a transacao no Banco de Dados, realiza algumas tarefas:
     - Valida se a transação NÃO está (finalizada ou cancelada)
     - Valida se o cliente possui saldo suficiente em caso de operação = debito
-        - Se não possuir, salva a transação como cancelada e erro no request
+        - Se não possuir salva a transação como cancelada e erro no request
         - Se possuir, modifica o saldo
     - Verifica e gerá uma transação espelho caso se tipo de transação gere uma
 
