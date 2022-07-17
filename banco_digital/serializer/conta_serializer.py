@@ -1,3 +1,4 @@
+from cgitb import lookup
 from rest_framework import serializers
 from banco_digital.models.conta import Conta
 from banco_digital.models.cliente import Cliente
@@ -18,3 +19,5 @@ class ContaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Conta
         fields = ["conta", "saldo", "cliente"]
+
+        # lookup_field= 'conta_cliente'

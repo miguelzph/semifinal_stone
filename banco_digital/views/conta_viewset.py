@@ -5,7 +5,7 @@ from banco_digital.serializer.conta_serializer import ContaSerializer
 
 
 class ContaViewSet(
-    mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet
+    mixins.ListModelMixin, viewsets.GenericViewSet, mixins.RetrieveModelMixin
 ):
     """ViewSet que permite visualizer a lista de contas da base."""
 

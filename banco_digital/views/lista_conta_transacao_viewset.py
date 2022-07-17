@@ -4,6 +4,7 @@ from banco_digital.serializer.lista_conta_transacao_serializer import (
 )
 from rest_framework.generics import ListAPIView
 from banco_digital.models.conta import Conta
+from django.http import Http404
 
 
 class ListaContaTransacaoViewSet(ListAPIView):
@@ -15,11 +16,14 @@ class ListaContaTransacaoViewSet(ListAPIView):
     #         'quote_of_the_day': 'ok'}
     #     return Response(custom_data)
 
-    def get_queryset(self):
-        queryset = Transacao.objects.filter(
-            conta_cliente=Conta.objects.filter(conta=self.kwargs["conta_cliente"])[0]
-        )
-
-        return queryset
-
     serializer_class = ListaContaTransacaoSerializer
+
+    def get_queryset(self):
+        conta_procurada = Conta.objects.filter(conta=self.kwargs["conta_cliente"])
+        if conta_procurada:
+            queryset = Transacao.objects.filter(conta_cliente=conta_procurada[0])
+
+            return queryset
+
+        else:
+            raise Http404({"conta": "A conta não foi encontrada!"})
