@@ -20,10 +20,11 @@ class ClienteViewSet(CreateModelMixin, GenericViewSet):
             - Cria o cliente fazendo todas as validações
             - Cria a conta
 
-        Returns:
-            Response: Dados do cliente + número da conta
+    
+        Response: Dados do cliente + número da conta
         """
 
+        # padroniza email minusculo
         if request.data.get("email"):
             request.data["email"] = request.data["email"].lower()
 

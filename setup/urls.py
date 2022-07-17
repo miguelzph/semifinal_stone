@@ -28,7 +28,6 @@ from banco_digital.views.lista_conta_transacao_viewset import ListaContaTransaca
 
 router = routers.DefaultRouter()
 router.register(r"cliente", ClienteViewSet)
-# router.register(r"transacao", TransacaoViewSet, "transacao")
 router.register(r"saque", SaqueViewSet, "saque")
 router.register(r"deposito", DepositoViewSet, "deposito")
 router.register(r"transferencia", TransferenciaViewSet, "transferencia")
