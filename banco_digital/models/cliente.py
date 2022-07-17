@@ -23,7 +23,7 @@ class Cliente(models.Model):
     data_cadastro = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self) -> str:
-        return self.nome  # isso ou adiciona no list field o nome
+        return f'{self.nome} - {self.email}'  # isso ou adiciona no list field o nome
 
     class Meta:
         verbose_name_plural = "Cliente"
