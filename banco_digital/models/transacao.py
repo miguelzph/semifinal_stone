@@ -3,8 +3,6 @@ from banco_digital.models.conta import Conta
 from banco_digital.models.tipo_transacao import TipoTransacao
 from banco_digital.models.status_transacao import StatusTransacao
 from banco_digital.constants.models_constants import STATUS
-
-
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
 from rest_framework import serializers
@@ -30,6 +28,7 @@ class Transacao(models.Model):
         StatusTransacao, on_delete=models.CASCADE, default=1, null=True
     )
     valor = models.FloatField()
+    saldo_pre_operacao = models.FloatField(null=True, blank=True)
     conta_implicada = models.ForeignKey(
         Conta,
         null=True,
@@ -112,6 +111,8 @@ def transacao_create_handler(sender, instance, *args, **kwargs):
         STATUS["finalizado"]["status"],
         STATUS["cancelado"]["status"],
     ]:
+        instance.saldo_pre_operacao = instance.conta_cliente.saldo
+
         if instance.tipo_id.operacao == "debito":
             instance.valor = -instance.valor
 

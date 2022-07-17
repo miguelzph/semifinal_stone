@@ -1,4 +1,3 @@
-from django.urls import path, include
 from rest_framework import serializers
 from banco_digital.models.conta import Conta
 from banco_digital.models.transacao import Transacao
@@ -34,9 +33,18 @@ class TransferenciaSerializer(serializers.ModelSerializer):
 
     valor = serializers.DecimalField(max_digits=None, decimal_places=2, min_value=0.01)
 
+    saldo_pre_operacao = serializers.ReadOnlyField()
+
     class Meta:
         model = Transacao
-        fields = ["conta_cliente", "valor", "conta_implicada", "tipo_id", "status_id"]
+        fields = [
+            "conta_cliente",
+            "valor",
+            "saldo_pre_operacao",
+            "conta_implicada",
+            "tipo_id",
+            "status_id",
+        ]
         lookup_field = "pk"
 
     def validate(self, data):

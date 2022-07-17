@@ -30,6 +30,7 @@ class ListaContaTransacaoSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             "conta_cliente",
             "valor",
+            "saldo_pre_operacao",
             "tipo_id",
             "status_id",
             "conta_implicada",
