@@ -14,7 +14,7 @@ uma API REST, que permita:
     - Com a possibilidade de consultar em um dado período estipulado
 
 # 2. Planejamento da solução.
-- Esboço do diagrama de relacionamentos que represente as necessidades do sistema
+## Esboço do diagrama de relacionamentos que represente as necessidades do sistema
 ![image](docs/imagens/diagrama_banco_de_dados_v1.png)
 
 # 3. Solução.
@@ -37,6 +37,7 @@ uma API REST, que permita:
 | telefone | telefone do cliente|
 | tipo | PF se pessoa física; PJ se pessoa jurídica|
 <br>
+
 * Exemplo de dados a serem enviados:
 
     ```python
@@ -85,6 +86,7 @@ uma API REST, que permita:
 | valor | valor com no máximo duas casas decimais |
 
 <br>
+
 * Exemplo de dados a serem enviados:
 
     ```python
@@ -116,6 +118,7 @@ uma API REST, que permita:
 | conta_implicada | conta para envio |
 
 <br>
+
 * Exemplo de dados a serem enviados:
 
     ```python
@@ -210,3 +213,8 @@ uma API REST, que permita:
         ```
 
 # 4. Próximos Passos
+    - Adicionar os Status e Tipos de Transação necessários, após o migrate
+    - Criação de Testes
+    - Validações nos campos de cliente endereço
+    - Adicionar possibilidade de agendamento na transferência
+    - Adicionar motivos de cancelamento
