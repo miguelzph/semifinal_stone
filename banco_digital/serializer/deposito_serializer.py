@@ -30,7 +30,6 @@ class DepositoSerializer(serializers.ModelSerializer):
     saldo_pre_operacao = serializers.ReadOnlyField()
 
     def validate(self, data):
-
         validar_ativacao_conta(data)
 
         return data

@@ -28,7 +28,10 @@ class ListaContaTransacaoViewSet(ListAPIView):
                 except:
                     raise ValidationError(
                         {
-                            "data_minima": f"O valor “{data_minima}” tem um formato inválido. Deve estar no formato YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]."
+                            "data_minima": (
+                                f"O valor “{data_minima}” tem um formato inválido. Deve"
+                                " estar no formato YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]."
+                            )
                         }
                     )
 
@@ -38,7 +41,10 @@ class ListaContaTransacaoViewSet(ListAPIView):
                 except:
                     raise ValidationError(
                         {
-                            "data_maxima": f"O valor “{data_maxima}” tem um formato inválido. Deve estar no formato YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]."
+                            "data_maxima": (
+                                f"O valor “{data_maxima}” tem um formato inválido. Deve"
+                                " estar no formato YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]."
+                            )
                         }
                     )
 

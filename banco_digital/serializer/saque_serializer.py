@@ -42,7 +42,6 @@ class SaqueSerializer(serializers.ModelSerializer):
         lookup_field = "pk"
 
     def validate(self, data):
-
         validar_ativacao_conta(data)
 
         return data

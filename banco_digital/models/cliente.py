@@ -4,7 +4,6 @@ from banco_digital.validators.cliente import validar_campo_numerico
 
 
 class Cliente(models.Model):
-
     pessoa_fisica = "PF"
     pessoa_juridica = "PJ"
 

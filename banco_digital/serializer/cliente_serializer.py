@@ -12,7 +12,6 @@ class ClienteSerializer(serializers.HyperlinkedModelSerializer):
         fields = ["id", "nome", "cpf", "cnpj", "email", "telefone", "tipo"]
 
     def validate(self, data):
-
         validar_tipo_cpf_cnpj(data)
 
         return data

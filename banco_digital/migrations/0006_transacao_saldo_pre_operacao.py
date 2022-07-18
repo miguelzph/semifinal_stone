@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("banco_digital", "0005_alter_cliente_cnpj_alter_cliente_cpf_and_more"),
     ]

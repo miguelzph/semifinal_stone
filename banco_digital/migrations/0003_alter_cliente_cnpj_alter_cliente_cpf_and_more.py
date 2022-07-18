@@ -5,7 +5,6 @@ import localflavor.br.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("banco_digital", "0002_alter_statustransacao_status_and_more"),
     ]

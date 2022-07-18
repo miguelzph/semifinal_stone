@@ -5,7 +5,6 @@ import localflavor.br.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("banco_digital", "0003_alter_cliente_cnpj_alter_cliente_cpf_and_more"),
     ]

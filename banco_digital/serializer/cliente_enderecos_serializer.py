@@ -4,7 +4,6 @@ from banco_digital.models.cliente import Cliente
 
 
 class ClienteEnderecosSerializer(serializers.HyperlinkedModelSerializer):
-
     cliente_id = serializers.SlugRelatedField(
         queryset=Cliente.objects.all(),
         read_only=False,
