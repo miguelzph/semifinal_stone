@@ -107,10 +107,7 @@ def transacao_create_handler(sender, instance, *args, **kwargs):
     Obs: Apesar do erro a transação é salva no banco como cancelada
     """
 
-    if instance.status_id.status not in [
-        STATUS["finalizado"]["status"],
-        STATUS["cancelado"]["status"],
-    ]:
+    if instance.status_id.status == STATUS["aguardando_aprovacao"]["status"]:
         instance.saldo_pre_operacao = instance.conta_cliente.saldo
 
         if instance.tipo_id.operacao == "debito":
