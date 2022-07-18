@@ -50,6 +50,30 @@ uma API REST, que permita:
     ```
 * Retorna: os dados enviados e o número da conta.
 
+### Cadastrar Cliente Enderecos
+* Endpoint(POST): /cliente_enderecos/
+
+* Campos:
+    - email: e-mail do cliente em que será adicionado o endereço
+    - Exceto nulidade, essa função ainda não faz validações nos outros citados no exemplo abaixo, porém, é necessário adicionar um endereço ao cliente, pois isso libera o envio e recebimento de transacoes da conta(representaria que o cadastro está completo).
+
+* Exemplo de dados a serem enviados:
+
+    ```python
+    {
+    "cliente_id": "cliente_teste@gmail.com",
+    "cep": "NA",
+    "rua": "NA",
+    "numero": "NA",
+    "bairro": "NA",
+    "complemento": "NA",
+    "cidade": "NA",
+    "estado": "NA",
+    "pais": "NA"
+    }
+    ```
+
+
 ### Saque e Deposito (semelhantes)
 * Endpoint(POST): /saque/ ou /deposito/ 
 
@@ -185,3 +209,4 @@ uma API REST, que permita:
         }
         ```
 
+# 4. Próximos Passos
