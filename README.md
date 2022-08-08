@@ -148,14 +148,14 @@ uma API REST, que permita:
 * Retorna: Uma lista com todas as contas (e seus respectivos campos).
 
 ### Listagem de todas as contas
-* Endpoint(GET): /conta/<id>
+* Endpoint(GET): /conta/\<id_conta>
 
 * Observação: Até o momento está usando realmente o id da conta, então se a conta for 100001, então o id é 1 (a ser alterado conforme a função a seguir).
 
 * Retorna: Uma lista com todas as contas (e seus respectivos campos).
 
 ### Listagem de todas as transacoes de uma conta
-* Endpoint(GET): /conta/<conta>/transacoes
+* Endpoint(GET): /conta/\<num_conta>/transacoes
 
 * Observação: Podem ser passados no url, a data_maxima e/ou a data_minima (no formato YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]), para filtrar as transacões de acordo com a data.
 
