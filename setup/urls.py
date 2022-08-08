@@ -25,18 +25,18 @@ from banco_digital.views.cliente_enderecos_viewset import ClienteEnderecosViewSe
 from banco_digital.views.lista_conta_transacao_viewset import ListaContaTransacaoViewSet
 
 
-router = routers.DefaultRouter()
-router.register(r"cliente", ClienteViewSet, "cliente")
-router.register(r"saque", SaqueViewSet, "saque")
-router.register(r"deposito", DepositoViewSet, "deposito")
-router.register(r"transferencia", TransferenciaViewSet, "transferencia")
-router.register(r"conta", ContaViewSet, "conta")
-router.register(r"cliente_enderecos", ClienteEnderecosViewSet, "cliente_enderecos")
+# router = routers.DefaultRouter()
+# router.register(r"cliente", ClienteViewSet, "cliente")
+# router.register(r"saque", SaqueViewSet, "saque")
+# router.register(r"deposito", DepositoViewSet, "deposito")
+# router.register(r"transferencia", TransferenciaViewSet, "transferencia")
+# router.register(r"conta", ContaViewSet, "conta")
+# router.register(r"cliente_enderecos", ClienteEnderecosViewSet, "cliente_enderecos")
 
 
 urlpatterns = [
-    path("", include(router.urls)),
+    # path("", include(router.urls)),
     path("admin/", admin.site.urls),
-    path("conta/<str:conta_cliente>/transacoes", ListaContaTransacaoViewSet.as_view()),
-    path("api-auth/", include("rest_framework.urls")),
+#     path("conta/<str:conta_cliente>/transacoes", ListaContaTransacaoViewSet.as_view()),
+#     path("api-auth/", include("rest_framework.urls")),
 ]
