@@ -24,19 +24,26 @@ from banco_digital.views.conta_viewset import ContaViewSet
 from banco_digital.views.cliente_enderecos_viewset import ClienteEnderecosViewSet
 from banco_digital.views.lista_conta_transacao_viewset import ListaContaTransacaoViewSet
 
+from banco_digital.constants.models_constants import STATUS, TIPO
 
-# router = routers.DefaultRouter()
-# router.register(r"cliente", ClienteViewSet, "cliente")
-# router.register(r"saque", SaqueViewSet, "saque")
-# router.register(r"deposito", DepositoViewSet, "deposito")
-# router.register(r"transferencia", TransferenciaViewSet, "transferencia")
-# router.register(r"conta", ContaViewSet, "conta")
-# router.register(r"cliente_enderecos", ClienteEnderecosViewSet, "cliente_enderecos")
+from banco_digital.validators import database_empty
+
+# necessário para os tests/ mudança de banco de dados
+database_empty.correct_status_empty(STATUS)
+database_empty.correct_tipo_empty(TIPO)
+
+router = routers.DefaultRouter()
+router.register(r"cliente", ClienteViewSet, "cliente")
+router.register(r"saque", SaqueViewSet, "saque")
+router.register(r"deposito", DepositoViewSet, "deposito")
+router.register(r"transferencia", TransferenciaViewSet, "transferencia")
+router.register(r"conta", ContaViewSet, "conta")
+router.register(r"cliente_enderecos", ClienteEnderecosViewSet, "cliente_enderecos")
 
 
 urlpatterns = [
-    # path("", include(router.urls)),
+    path("", include(router.urls)),
     path("admin/", admin.site.urls),
-#     path("conta/<str:conta_cliente>/transacoes", ListaContaTransacaoViewSet.as_view()),
-#     path("api-auth/", include("rest_framework.urls")),
+    path("conta/<str:conta_cliente>/transacoes", ListaContaTransacaoViewSet.as_view()),
+    path("api-auth/", include("rest_framework.urls")),
 ]

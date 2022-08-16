@@ -15,14 +15,14 @@ class TransferenciaSerializer(serializers.ModelSerializer):
         queryset=StatusTransacao.objects.all(),
         read_only=False,
         required=False,
-        slug_field="status"
+        slug_field="status",
     )
 
     tipo_id = serializers.SlugRelatedField(
         queryset=TipoTransacao.objects.all(),
         read_only=False,
         slug_field="tipo",
-        required=False
+        required=False,
     )
 
     conta_implicada = serializers.SlugRelatedField(
